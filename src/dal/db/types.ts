@@ -1,9 +1,14 @@
-import { Generated, ColumnType } from 'kysely';
+import { Generated, ColumnType, InferResult } from 'kysely';
 
 export interface TodoistApiToken {
     id: Generated<string> // uuid
     user_id: string,
-    token: string
+    api_token: string
+}
+
+export interface PrimarySink {
+    user_id: string,
+    sink_id: string
 }
 
 export interface Sink {

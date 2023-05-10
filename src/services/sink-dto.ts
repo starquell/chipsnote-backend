@@ -3,4 +3,5 @@ export interface SinkDTO {
     type: string;
     name: string;
     details: object;
+    is_primary: boolean;
 }

@@ -3,24 +3,26 @@ dotenv.config()
 
 import express, * as e from 'express'
 import bodyParser from 'body-parser';
-import router from './routes/sinks';
+import compression from 'compression'
+
+import { errorHandlingMiddleware, dummyAuthMiddleware } from './middleware';
+import { sinksRouter } from './routes';
 
 const port = process.env.PORT
 const app = express()
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(compression())
 
-app.use((req, res, next) => {
-    req.user_id = '1'
-    return next()
-})
+app.use(dummyAuthMiddleware)
 
-app.get('/greeting', (req, res) => {
-    res.send({greeting: 'Hello World!'})
+app.get('/greeting', (req, res) => {    
+    res.send({greeting: `Hello, ${req.user_id}!`})
 });
+app.use("/me/sinks", sinksRouter)
 
-app.use("/me/sinks", router)
+app.use(errorHandlingMiddleware);
 
 app.listen(port, () => {
     console.log(`⚡️ Chipsnote backend is listening on port ${port}`);
