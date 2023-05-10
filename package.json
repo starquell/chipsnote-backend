@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc --project .",
-    "start:server": "node build/index.js"
+    "start:server": "node build/index.js",
+    "lint": "eslint . --ext .ts"
   },
   "keywords": [],
   "author": "",

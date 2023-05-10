@@ -1,7 +1,5 @@
-import { SinkDTO } from "../services/sink-dto"
 import { KyselyDatabase, sinksDB } from "./db/db"
-import * as dbtypes from "./db/types"
-import { NoResultError, sql } from "kysely"
+import { sql } from "kysely"
 import { ApiError } from "../utils/api-error"
 
 export class SinkDAO {
@@ -24,7 +22,7 @@ export class SinkDAO {
 
     async createSink(sink: any): Promise<string> {
         try {
-            let res = await this.db.insertInto("sinks").values(sink).returning("id").executeTakeFirstOrThrow();
+            const res = await this.db.insertInto("sinks").values(sink).returning("id").executeTakeFirstOrThrow();
             if ((await this.getSinks(sink.owner_id)).length == 1) {
                 await this.changePrimarySink(res.id, sink.owner_id);
             }

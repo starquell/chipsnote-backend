@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv'
 dotenv.config()
 
-import express, * as e from 'express'
+import express from 'express'
 import bodyParser from 'body-parser';
 import compression from 'compression'
 

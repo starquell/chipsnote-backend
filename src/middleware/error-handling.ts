@@ -1,8 +1,9 @@
 import { ZodError } from "zod"
 import { ApiError } from "../utils/api-error"
 import { DatabaseError } from "pg"
+import * as e from "express"
 
-export default function handleErrors(err: any, req: any, res: any, next: any) {
+export default function handleErrors(err: any, req: e.Request, res: e.Response, next: e.NextFunction) {
     if ((err instanceof ApiError)) {
         console.log(err)
         res.status(err.httpCode)

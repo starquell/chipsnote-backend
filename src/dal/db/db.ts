@@ -1,6 +1,6 @@
 import * as types from './types'
 import { Pool } from 'pg'
-import { Kysely, PostgresDialect, PostgresDialectConfig} from 'kysely'
+import { Kysely, PostgresDialect} from 'kysely'
 
 interface Database {
     todoist_api_tokens: types.TodoistApiToken,

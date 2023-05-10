@@ -1,4 +1,4 @@
-import { Generated, ColumnType, InferResult } from 'kysely';
+import { Generated } from 'kysely';
 
 export interface TodoistApiToken {
     id: Generated<string> // uuid

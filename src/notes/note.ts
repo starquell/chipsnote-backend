@@ -14,7 +14,7 @@ export class Note {
     get description(): string {
         return this._description
     }
-};
+}
 
 function buildTitle(desc: string): string {
     /// here goes vano

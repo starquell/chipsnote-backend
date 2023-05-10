@@ -1,5 +1,4 @@
 import { KyselyDatabase, sinksDB } from "./db/db"
-import * as dbtypes from "./db/types"
 
 export class TodoistApiTokensDAO {
     db: KyselyDatabase
@@ -10,7 +9,7 @@ export class TodoistApiTokensDAO {
 
     async addToken(user_id: string, token: string): Promise<string | undefined> {
         try {
-            let res = await this.db.insertInto("todoist_api_tokens")
+            const res = await this.db.insertInto("todoist_api_tokens")
                 .values({ user_id, api_token: token })
                 .returning("id")
                 .executeTakeFirstOrThrow();
