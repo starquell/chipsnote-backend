@@ -1,26 +1,26 @@
 export class Note {
     _title: string    /// @todo make private
-    _description: string
+    _content: string
 
-    constructor(title: string, desc: string) {
+    constructor(title: string, content: string) {
         this._title = title;
-        this._description = desc
+        this._content = content
     }
 
     get title(): string {
         return this._title
     }
 
-    get description(): string {
-        return this._description
+    get content(): string {
+        return this._content
     }
 }
 
-function buildTitle(desc: string): string {
+function buildTitle(content: string): string {
     /// here goes vano
     const MAX_TITLE_LENGHT = 20;
 
-    return desc.length > MAX_TITLE_LENGHT ? desc.substring(0, MAX_TITLE_LENGHT) + '...' : desc;
+    return content.length > MAX_TITLE_LENGHT ? content.substring(0, MAX_TITLE_LENGHT) + '...' : content;
 }
 
 export function buildNote(desc: string): Note {

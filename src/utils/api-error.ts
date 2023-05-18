@@ -12,3 +12,5 @@ export class ApiError extends Error {
         return this._httpCode;
     }
 }
+
+export { StatusCode } from 'status-code-enum'
