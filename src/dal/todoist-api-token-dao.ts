@@ -1,3 +1,4 @@
+import { ApiError } from "../utils/api-error";
 import { KyselyDatabase, sinksDB } from "./db/db"
 
 export class TodoistApiTokensDAO {
@@ -17,6 +18,21 @@ export class TodoistApiTokensDAO {
         }
         catch (e) {
             /// @todo what the fuck
+            console.log(e);
+            return undefined;
+        }
+    }
+
+    async getToken(id: string): Promise<string | undefined>
+    {
+        try {
+            const res = await this.db.selectFrom("todoist_api_tokens")
+                .select(["api_token"])
+                .where("id", "=", id)
+                .executeTakeFirstOrThrow();
+            return res.api_token;
+        }
+        catch (e) {
             console.log(e);
             return undefined;
         }

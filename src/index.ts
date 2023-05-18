@@ -6,7 +6,11 @@ import bodyParser from 'body-parser';
 import compression from 'compression'
 
 import { errorHandlingMiddleware, dummyAuthMiddleware } from './middleware';
-import { sinksRouter } from './routes';
+import { sinksRouter, notesRouter } from './routes';
+
+if (process.env.PORT === undefined) {
+    throw new Error("PORT is not set in env")
+}
 
 const port = process.env.PORT
 const app = express()
@@ -21,6 +25,7 @@ app.get('/greeting', (req, res) => {
     res.send({greeting: `Hello, ${req.user_id}!`})
 });
 app.use("/me/sinks", sinksRouter)
+app.use("/me/notes", notesRouter)
 
 app.use(errorHandlingMiddleware);
 

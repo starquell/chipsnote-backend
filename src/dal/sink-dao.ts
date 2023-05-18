@@ -1,6 +1,7 @@
 import { KyselyDatabase, sinksDB } from "./db/db"
 import { sql } from "kysely"
 import { ApiError } from "../utils/api-error"
+import { StatusCode } from "status-code-enum"
 
 export class SinkDAO {
     db: KyselyDatabase
@@ -30,7 +31,7 @@ export class SinkDAO {
         }
         catch (e: any) {
             if (e.constraint == 'name_unique_constraint') {
-               throw new ApiError(409, `Sink with name ${sink.name} already exists.`)
+               throw new ApiError(StatusCode.ClientErrorConflict, `Sink with name ${sink.name} already exists.`)
             }
             throw e
         }
@@ -55,7 +56,7 @@ export class SinkDAO {
         }
         catch (e: any) {
             if (e.constraint == 'sink_id_foreign_key') {
-                throw new ApiError(404, `Sink with id ${sink_id} does not exist.`)
+                throw new ApiError(StatusCode.ClientErrorNotFound, `Sink with id ${sink_id} does not exist.`)
              }
             throw e;
         }

@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const PostNoteSchema = z.object({
-    description: z.string(),
+    content: z.string(),
     sink_id: z.string().uuid().optional(),
 });
 
