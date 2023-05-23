@@ -5,7 +5,7 @@ import express from 'express'
 import bodyParser from 'body-parser';
 import compression from 'compression'
 
-import { errorHandlingMiddleware, dummyAuthMiddleware } from './middleware';
+import { errorHandlingMiddleware, jwtCheck, extractUserData } from './middleware';
 import { sinksRouter, notesRouter } from './routes';
 
 if (process.env.PORT === undefined) {
@@ -13,13 +13,13 @@ if (process.env.PORT === undefined) {
 }
 
 const port = process.env.PORT
-const app = express()
+const app = express();
 
+app.use(jwtCheck);
+app.use(extractUserData)
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(compression())
-
-app.use(dummyAuthMiddleware)
 
 app.get('/greeting', (req, res) => {    
     res.send({greeting: `Hello, ${req.user_id}!`})
