@@ -4,6 +4,7 @@ dotenv.config()
 import express from 'express'
 import bodyParser from 'body-parser';
 import compression from 'compression'
+import morgan  from 'morgan'
 
 import { errorHandlingMiddleware, jwtCheck, extractUserData } from './middleware';
 import { sinksRouter, notesRouter } from './routes';
@@ -15,6 +16,7 @@ if (process.env.PORT === undefined) {
 const port = process.env.PORT
 const app = express();
 
+app.use(morgan('combined'))
 app.use(jwtCheck);
 app.use(extractUserData)
 app.use(bodyParser.json());
