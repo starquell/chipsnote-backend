@@ -5,6 +5,7 @@ import express from 'express'
 import bodyParser from 'body-parser';
 import compression from 'compression'
 import morgan  from 'morgan'
+import cors from  'cors'
 
 import { errorHandlingMiddleware, dummyAuthMiddleware } from './middleware';
 import { sinksRouter, notesRouter } from './routes';
@@ -17,6 +18,7 @@ const port = process.env.PORT
 const app = express()
 
 app.use(morgan('combined'))
+app.use(cors())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(compression())
