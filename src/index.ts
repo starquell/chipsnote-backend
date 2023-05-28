@@ -15,6 +15,7 @@ if (process.env.PORT === undefined) {
 }
 
 const port = process.env.PORT
+const host = process.env.HOST || "localhost"
 const app = express();
 
 app.use(morgan('combined'))
@@ -33,6 +34,6 @@ app.use("/me/notes", notesRouter)
 
 app.use(errorHandlingMiddleware);
 
-app.listen(port, () => {
+app.listen(parseInt(port), host, () => {
     console.log(`⚡️ Chipsnote backend is listening on port ${port}`);
 });
