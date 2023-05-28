@@ -5,7 +5,7 @@ import express from 'express'
 import bodyParser from 'body-parser';
 import compression from 'compression'
 import morgan  from 'morgan'
-import cors from  'cors'
+import cors from 'cors'
 
 import { errorHandlingMiddleware, jwtCheck, extractUserData } from './middleware';
 import { sinksRouter, notesRouter } from './routes';
@@ -35,5 +35,5 @@ app.use("/me/notes", notesRouter)
 app.use(errorHandlingMiddleware);
 
 app.listen(parseInt(port), host, () => {
-    console.log(`⚡️ Chipsnote backend is listening on port ${port}`);
+    console.log(`⚡️ Chipsnote backend is listening on port ${port}. HOST: ${host}`);
 });
