@@ -1,4 +1,4 @@
-import NoteGenerator from "./generator";
+import NoteTitleGenerator from "./generator";
 
 export class Note {
     _title: string    /// @todo make private
@@ -19,7 +19,7 @@ export class Note {
 }
 
 async function buildTitle(content: string): Promise<string> {
-    return NoteGenerator.instance().generate(content);
+    return NoteTitleGenerator.instance().generate(content);
 }
 
 export async function buildNote(desc: string): Promise<Note> {

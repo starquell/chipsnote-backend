@@ -41,7 +41,7 @@ const presencePenalty: number = 0.3;
 const stop: Array<string> = ['\n']
 
 function promptForNote(noteContent: string): string {
-    return prompt + noteContent + "\nTask name: ";
+    return `${prompt}${noteContent}\nTask name:`
 }
 
 function completionParams(noteContent: string) {

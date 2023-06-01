@@ -1,14 +1,14 @@
 import OpenAITitleGenerator from "./openai";
 
-export default class NoteGenerator {
+export default class NoteTitleGenerator {
 
-    private static _instance: NoteGenerator;
+    private static _instance: NoteTitleGenerator;
 
-    static instance(): NoteGenerator {
-        if (!NoteGenerator._instance) {
-            NoteGenerator._instance = new NoteGenerator;
+    static instance(): NoteTitleGenerator {
+        if (!NoteTitleGenerator._instance) {
+            NoteTitleGenerator._instance = new NoteTitleGenerator;
         }
-        return NoteGenerator._instance;
+        return NoteTitleGenerator._instance;
     }
 
     private openaiGenerator: OpenAITitleGenerator 

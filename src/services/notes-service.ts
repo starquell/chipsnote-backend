@@ -1,7 +1,7 @@
 import { CreateNoteData } from "../zod-schemas/create-note"
 import { SinkDAO } from "../dal/sink-dao"
 import { ApiError, StatusCode } from "../utils/api-error";
-import { buildNote } from "../notes/note"
+import { buildNote } from "./notes/note"
 import { NoteCreationResult } from "./basic-sink"
 import { createSink } from "./create-sink"
 
