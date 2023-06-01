@@ -1,7 +1,7 @@
 import { CreateNoteData } from "../zod-schemas/create-note"
 import { SinkDAO } from "../dal/sink-dao"
 import { ApiError, StatusCode } from "../utils/api-error";
-import { buildNote } from "../notes/note"
+import { buildNote } from "./notes/note"
 import { NoteCreationResult } from "./basic-sink"
 import { createSink } from "./create-sink"
 
@@ -25,7 +25,7 @@ export class NotesService {
             userPrimarySink.type, userPrimarySink.access_type, 
             userPrimarySink.access_id, userPrimarySink.details
         )
-        const note = buildNote(data.content);
+        const note = await buildNote(data.content);
         const result = await sink.createNote(note);
         return result;        
     }

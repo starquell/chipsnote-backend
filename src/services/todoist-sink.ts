@@ -2,7 +2,7 @@ import { Sink, NoteCreationResult } from "./basic-sink";
 import { TodoistApiTokensDAO } from "../dal/todoist-api-token-dao";
 import { TodoistApi } from "@doist/todoist-api-typescript"
 import { ApiError, StatusCode } from "../utils/api-error";
-import { Note } from "../notes/note"
+import { Note } from "./notes/note"
 
 export class TodoistSink implements Sink {
 
