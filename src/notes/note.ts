@@ -1,3 +1,5 @@
+import NoteGenerator from "./generator";
+
 export class Note {
     _title: string    /// @todo make private
     _content: string
@@ -17,10 +19,7 @@ export class Note {
 }
 
 function buildTitle(content: string): string {
-    /// here goes vano
-    const MAX_TITLE_LENGHT = 20;
-
-    return content.length > MAX_TITLE_LENGHT ? content.substring(0, MAX_TITLE_LENGHT) + '...' : content;
+    return NoteGenerator.instance().generate(content);
 }
 
 export function buildNote(desc: string): Note {
