@@ -41,7 +41,7 @@ const presencePenalty: number = 0.3;
 const stop: Array<string> = ['\n']
 
 function promptForNote(noteContent: string): string {
-    return prompt + noteContent;
+    return prompt + noteContent + "\nTask name: ";
 }
 
 function completionParams(noteContent: string) {
@@ -51,10 +51,10 @@ function completionParams(noteContent: string) {
         temperature: temperature,
         max_tokens: maxTokens,
         top_p: topP,
-        frequence_penalty: frequencyPenalty,
+        frequency_penalty: frequencyPenalty,
         presence_penalty: presencePenalty,
-        stop: stop
-    };
+        stop: stop,
+    }
 }
 
 
@@ -65,7 +65,7 @@ export default class OpenAITitleGenerator {
 
     constructor() {
         this.config = new Configuration({
-            apiKey: process.env.OPENAI_API_TOKEN,
+            apiKey: process.env.OPENAI_API_KEY,
         });
         this.api = new OpenAIApi(this.config);
     }
@@ -77,12 +77,20 @@ export default class OpenAITitleGenerator {
         };
         
         try {
+            if (!this.config.apiKey) {
+                throw Error("OpenAI API token is not provided");
+            }
             const completion = await this.api.createCompletion(
                 completionParams(content)
             );
             const generatedTitle = completion.data.choices[0].text;
-            return generatedTitle ? generatedTitle : fallbackTitle();
+            if (!generatedTitle) {
+                console.log('Error: Generated title is empty')
+                return fallbackTitle();
+            }
+            return generatedTitle;
         } catch (error) {
+            console.log(`Error: ${error}`)
             return fallbackTitle();
         }        
     }

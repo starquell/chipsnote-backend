@@ -5,7 +5,10 @@ export default class NoteGenerator {
     private static _instance: NoteGenerator;
 
     static instance(): NoteGenerator {
-        return this._instance;
+        if (!NoteGenerator._instance) {
+            NoteGenerator._instance = new NoteGenerator;
+        }
+        return NoteGenerator._instance;
     }
 
     private openaiGenerator: OpenAITitleGenerator 
