@@ -83,12 +83,12 @@ export default class OpenAITitleGenerator {
             const completion = await this.api.createCompletion(
                 completionParams(content)
             );
-            const generatedTitle = completion.data.choices[0].text;
-            if (!generatedTitle) {
+            const maybeGeneratedTitle = completion.data.choices[0].text;
+            if (!maybeGeneratedTitle) {
                 console.log('Error: Generated title is empty')
                 return fallbackTitle();
             }
-            return generatedTitle;
+            return maybeGeneratedTitle.trim();
         } catch (error) {
             console.log(`Error: ${error}`)
             return fallbackTitle();
