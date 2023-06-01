@@ -25,7 +25,7 @@ export class NotesService {
             userPrimarySink.type, userPrimarySink.access_type, 
             userPrimarySink.access_id, userPrimarySink.details
         )
-        const note = buildNote(data.content);
+        const note = await buildNote(data.content);
         const result = await sink.createNote(note);
         return result;        
     }

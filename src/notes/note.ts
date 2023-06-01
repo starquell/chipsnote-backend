@@ -18,10 +18,12 @@ export class Note {
     }
 }
 
-function buildTitle(content: string): string {
+async function buildTitle(content: string): Promise<string> {
     return NoteGenerator.instance().generate(content);
 }
 
-export function buildNote(desc: string): Note {
-    return new Note(buildTitle(desc), desc);
+export async function buildNote(desc: string): Promise<Note> {
+    const title: string = await buildTitle(desc);
+    console.log(`title: ${title}, content: ${desc}`);
+    return new Note(title, desc);
 }

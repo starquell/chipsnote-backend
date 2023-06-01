@@ -1,3 +1,5 @@
+import OpenAITitleGenerator from "./openai";
+
 export default class NoteGenerator {
 
     private static _instance: NoteGenerator;
@@ -6,10 +8,13 @@ export default class NoteGenerator {
         return this._instance;
     }
 
-    generate(content: string): string {
-        /// @todo openai goes brrrrrr 
-        const MAX_TITLE_LENGHT = 20;
+    private openaiGenerator: OpenAITitleGenerator 
 
-        return content.length > MAX_TITLE_LENGHT ? content.substring(0, MAX_TITLE_LENGHT) + '...' : content;
+    private constructor() {
+        this.openaiGenerator = new OpenAITitleGenerator;
+    }
+
+    async generate(content: string): Promise<string> {
+        return this.openaiGenerator.createTitle(content);
     }
 }
