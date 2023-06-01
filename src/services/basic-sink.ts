@@ -1,4 +1,4 @@
-import { Note } from "../notes/note"
+import { Note } from "./notes/note"
 
 export interface NoteCreationResult {
     id?: string;
